@@ -12,9 +12,9 @@ int main()
 	int sfd=socket(AF_INET,SOCK_STREAM,0);
 	if(sfd==-1)
 	{	perror("socket");exit(-1); }
-	int pro_num=10;
+	int pro_num=1;
 	pdata p=(pdata)calloc(pro_num,sizeof(data_t));
-//	make_child(p,pro_num);
+	make_child(p,pro_num);
 
 	struct sockaddr_in* ser = (sockaddr_in*)calloc(1,sizeof(sockaddr_in));
 	ser->sin_addr.s_addr=INADDR_ANY;
@@ -33,6 +33,7 @@ int main()
 	char c[10]={0};
 	recv(new_fd,c,10,0);
 	printf("c=%s\n",c);
+	wait(NULL);
 	return 0;
 
 }
