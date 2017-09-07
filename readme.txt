@@ -9,12 +9,16 @@ FTP服务器项目
 	5.remove 文件名 删除服务器上文件
 	6.pwd 显示目前所在目录
 	7.其他命令不响应
-
+额外功能：
+	（现版本无gets功能，但原理和puts相同，up主有空再更）
+	1.断点续传
+	2.mmap大文件映射
 项目启动方法：
 	服务器：
-	./ftpserver ../conf/server.conf
+	./server
 	客户端：
 	./client ip port
+
 
 
 
