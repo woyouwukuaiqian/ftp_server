@@ -123,40 +123,6 @@ void func_puts(pcommand pmd,char* pbuf,int sfd)
 
 void func_gets(ptrain pt,int sfd)
 {
-	short len;
-	short func=4;
-	send(sfd,&func,sizeof(func),0);
-	char buf[1000]={0};
-	int fd;
-	fd=open(pt->buf,O_RDONLY);
-	if(-1==fd)
-	{
-		func=-1;
-		send(sfd,&func,sizeof(func),0);
-		printf("open fail\n");
-		close(fd);
-		return;
-	}
-	func=4;
-	send(sfd,&func,sizeof(func),0);
-	int flag=0;
-	train t;
-	while(memset(&t,0,sizeof(t)),(t.len=read(fd,t.buf,sizeof(t.buf)))>0)
-	{
-		//printf("buf=%s\n",t.buf);
-		if(-1==send_n(sfd,(char*)&t,4+t.len))
-		{
-			close(fd);
-			return;
-		}
-		
-	}
-	int tmp=1;
-	send(sfd,&tmp,sizeof(tmp),0);
-	send(sfd,&flag,sizeof(int),0);
-	
-	close(fd);
-
 	
 }
 
