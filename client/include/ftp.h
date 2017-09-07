@@ -2,19 +2,25 @@
 #define __FACTORY_H__
 #include "head.h"
 #define FILENAME "file"
+#define MSGLEN 1000
 
 typedef struct {
 	int pid;
 	int sfd;
-	int busy;//子进程为0不忙绿，�?忙碌
+	int busy;
 }data_t,*pdata;
 
 typedef struct {
-	short func;
-	short len;
+	int len;
 	char buf[1000];
 }train,*ptrain;
 
+typedef struct {
+	int flag;
+	char buf[MSGLEN];
+}command,*pcommand;
+
+int command_handle(char* buf,int* flag,int sfd);
 void send_fd(int,int);
 void recv_fd(int,int*);
 int send_n(int,char*,int);
