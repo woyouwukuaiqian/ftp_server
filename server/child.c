@@ -6,13 +6,35 @@
 
 #include "include/head.h"
 #include "include/ftp.h"
-
 void child(int spfd)
 {
+
+	int new_fd;
+	int ret;
+	char c[128]={0};
+	chdir("/home/wx/ftp_server_3/usefile");
 	while(1)
 	{
-		printf("pid=%d\n",getpid());
-		::sleep(2);
+		recv_fd(spfd,&new_fd);
+		printf("child:new_fd=%d\n",new_fd);
+		while(1)
+		{
+			//c存储的是客户端的命令
+			memset(c,0,128);
+			ret=recv(new_fd,c,128,0);
+			printf("recv=%s\n",c);
+			if(-1==ret)
+			{	printf("\n"); }
+			else if(0==ret)
+			{
+				close(new_fd);
+				break;
+			}
+			command_handle(c,new_fd);
+		}
+		int flag=0;
+		write(spfd,&flag,sizeof(flag));
+
 	}
 }
 

@@ -23,5 +23,6 @@
 #include <signal.h>
 #include <sys/wait.h>
 #include <crypt.h>
+#include <sys/mman.h>
 
 #endif

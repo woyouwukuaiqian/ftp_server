@@ -1,5 +1,4 @@
- ///
- /// @file    ftp.c
+ /// /// @file    ftp.c
  /// @author  wx(1418957094@qq.com)
  /// @date    2017-09-05 09:02:25
  ///
@@ -12,7 +11,7 @@ int main()
 	int sfd=socket(AF_INET,SOCK_STREAM,0);
 	if(sfd==-1)
 	{	perror("socket");exit(-1); }
-	int pro_num=2;
+	int pro_num=1;
 	pdata p=(pdata)calloc(pro_num,sizeof(data_t));
 	make_child(p,pro_num);
 
